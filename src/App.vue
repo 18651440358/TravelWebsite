@@ -30,7 +30,8 @@ export default {
   body{
     width: 100vw;
     @include fontColor(primaryText);
-
+    font-family: 'poppins',sans-serif;
+    font-weight: 400;
   }
   a{
     text-decoration: none;
