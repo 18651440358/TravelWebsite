@@ -5,7 +5,7 @@ import router from './router'
 Vue.config.productionTip = false
 
 // 字体注册
-
+import './assets/font/Poppins/font.css';
 
 new Vue({
   router,
