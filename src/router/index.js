@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
+
+// 着陆页
+import landing from '@/pages/landing/Landing'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    // path: '/',
-    // name: 'Home',
-    // component: Home
+    path: '/',
+    redirect: 'landing',
+    name: '着落页',
+    component: landing
   },
   // {
   //   path: '/about',
   //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
 ]
