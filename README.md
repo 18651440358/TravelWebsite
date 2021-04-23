@@ -6,7 +6,7 @@
  @SoftwareType   WebSite
  @Summary        This is a travel website where users can choose travel routes and book hotel rooms on the platform.
 ```
-## Other Open Source Code Used  (使用到的其他开源技术)
+## Other Open Source Code Used
 - Vue.js
 ## UI Stile
 - Metis UI
