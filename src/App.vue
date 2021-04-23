@@ -30,6 +30,7 @@ export default {
   body{
     width: 100vw;
     @include fontColor(primaryText);
+
   }
   a{
     text-decoration: none;
