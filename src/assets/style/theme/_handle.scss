@@ -1,0 +1,24 @@
+// 颜色提取tools
+@import "_themes.scss";
+
+// 给body添加属性控制主题
+@mixin theme {
+  @each $theme-name, $theme-map in $themes {
+    $theme-map: $theme-map !global;
+    [theme="#{$theme-name}"] & {
+      @content;
+    }
+  }
+}
+
+// 获取配置项的值
+@function value($key) {
+  @return map-get($theme-map, $key);
+}
+
+// 字体颜色
+@mixin fontColor($color) {
+  @include theme {
+    color: value($color);
+  }
+}
