@@ -6,6 +6,7 @@ Vue.config.productionTip = false
 
 // 字体注册
 import './assets/font/Poppins/font.css';
+import './assets/font/SourceHanSans/font.css';
 
 new Vue({
   router,

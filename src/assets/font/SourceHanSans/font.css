@@ -1,0 +1,44 @@
+@charset "utf-8";
+/*SourceHanSans字体导入*/
+@font-face {
+    font-family: "SourceHanSans";
+    font-style: normal;
+    src: url("./SourceHanSansTW-Regular.otf");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "SourceHanSans";
+    font-style: normal;
+    src: url("./SourceHanSansTW-Normal.otf");
+    font-weight: 300;
+}
+@font-face {
+    font-family: "SourceHanSans";
+    font-style: normal;
+    src: url("./SourceHanSansTW-Light.otf");
+    font-weight: 200;
+}
+@font-face {
+    font-family: "SourceHanSans";
+    font-style: normal;
+    src: url("./SourceHanSansTW-ExtraLight.otf");
+    font-weight: 100;
+}
+@font-face {
+    font-family: "SourceHanSans";
+    font-style: normal;
+    src: url("./SourceHanSansTW-Medium.otf");
+    font-weight: 500;
+}
+@font-face {
+    font-family: "SourceHanSans";
+    font-style: normal;
+    src: url("./SourceHanSansTW-Bold.otf");
+    font-weight: 600;
+}
+@font-face {
+    font-family: "SourceHanSans";
+    font-style: normal;
+    src: url("./SourceHanSansTW-Heavy.otf");
+    font-weight: 700;
+}
