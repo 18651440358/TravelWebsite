@@ -28,6 +28,8 @@ export default {
   @import "./assets/style/theme/_handle.scss";
   // 去除浏览器默认样式
   body{
+    margin: 0;
+    padding: 0;
     width: 100vw;
     @include fontColor(primaryText);
     font-family: 'poppins',"SourceHanSans",Helvetica,sans-serif;

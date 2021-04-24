@@ -2,14 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 着陆页
-import landing from '@/pages/landing/Landing'
+import landing from '@/pages/landing/Landing.vue';
 
 Vue.use(VueRouter)
 
 const routes = [
+  {path: '/',redirect: '/landing'},
   {
-    path: '/',
-    redirect: 'landing',
+    path: '/landing',
     name: '着落页',
     component: landing
   },
