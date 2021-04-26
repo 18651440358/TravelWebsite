@@ -1,5 +1,5 @@
 # Col
-列容器
+Col is the basic Col building block
 
 ## How to use
 
