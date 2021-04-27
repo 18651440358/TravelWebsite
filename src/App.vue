@@ -19,7 +19,7 @@ export default {
           "theme",
           theme ? theme : "light"
       );
-      // console.log(this.$i18n.locale)
+      console.log(this.$i18n.locale)
     }
   }
 }
