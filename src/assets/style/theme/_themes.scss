@@ -3,14 +3,20 @@ $themes: (
         // 明亮
         light: (
                 primary: #0080FF,
-                success: #39CB5B,
-                danger: #FF7573,
+                warning: #ffc700,
+                success: #20d489,
+                danger: #f1416c,
+                info: #5710b2,
+                primaryBackground: #e7f6ff,
+                successBackground: #e4fff4,
+                warningBackground: #fff8dd,
+                dangerBackground: #ffeff3,
+                infoBackground: #f6f1fc,
                 primaryText: #00264D,
                 regularText: #698096,
                 grayText: #BFCCD9,
                 LightText: #E3EBF3,
                 primaryBackground: #F1F5F9
-
         ),
         // 暗夜
         dark: (
