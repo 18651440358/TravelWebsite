@@ -2,11 +2,15 @@
 $themes: (
         // 明亮
         light: (
-                primary: #FFC276,
+                primary: #0080FF,
                 success: #39CB5B,
                 danger: #FF7573,
-                primaryText: #282D36,
-                regularText: #A3ABBA
+                primaryText: #00264D,
+                regularText: #698096,
+                grayText: #BFCCD9,
+                LightText: #E3EBF3,
+                primaryBackground: #F1F5F9
+
         ),
         // 暗夜
         dark: (

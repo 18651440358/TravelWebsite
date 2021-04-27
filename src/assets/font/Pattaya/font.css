@@ -1,0 +1,8 @@
+@charset "utf-8";
+/*Pattaya字体导入*/
+@font-face {
+    font-family: "Pattaya";
+    font-style: normal;
+    src: url("./Pattaya-Regular.ttf");
+    font-weight: 400;
+}

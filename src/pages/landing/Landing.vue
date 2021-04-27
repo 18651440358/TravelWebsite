@@ -1,20 +1,20 @@
 <template>
 <!-- 系统着落页 -->
   <div class="zc-page-landing">
-    <zc-container>
-
-    </zc-container>
+<!--    -->
   </div>
 </template>
 
 <script>
-import ZcContainer from "@/component/container/container";
 export default {
-  name: "zc-page-landing",
-  components: {ZcContainer}
+  name: "zc-page-landing"
 }
 </script>
 
 <style scoped lang="scss">
-
+  // 着落页
+  .zc-page-landing{
+    width: 100vw;
+    @include
+  }
 </style>

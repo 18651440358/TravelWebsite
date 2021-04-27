@@ -46,4 +46,8 @@ export default {
   *,*:before,*:after{
     box-sizing: border-box;
   }
+  img{
+    display: block;
+    user-select: none;
+  }
 </style>
