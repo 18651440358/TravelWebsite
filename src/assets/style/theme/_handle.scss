@@ -24,12 +24,12 @@
 }
 
 // 背景颜色
-@mixin background($color){
+@mixin bgColor($color){
   @include theme {
     background-color: value($color);
   }
 }
-@mixin backgroundRgba($opacity,$color){
+@mixin bgColorRgba($opacity,$color){
   background-color: rgba(value($color),$opacity);
 }
 

@@ -19,6 +19,7 @@ export default {
           "theme",
           theme ? theme : "light"
       );
+      // console.log(this.$i18n.locale)
     }
   }
 }
@@ -34,10 +35,12 @@ export default {
     @include fontColor(primaryText);
     font-family: 'poppins',"SourceHanSans",Helvetica,sans-serif;
     font-weight: 400;
+    -webkit-font-smoothing: antialiased;
   }
   a{
     text-decoration: none;
     cursor: pointer;
+    @include fontColor(primaryText);
   }
   h1,h2,h3,h4,h5,h6,p{
     margin: 0;
