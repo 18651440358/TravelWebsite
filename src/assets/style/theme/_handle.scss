@@ -47,3 +47,10 @@
                 fill $value linear;
   }
 }
+
+// 阴影
+@mixin box-shadow($color){
+  @include theme {
+    filter: drop-shadow(value($color))!important;
+  }
+}

@@ -16,7 +16,9 @@ $themes: (
                 regularText: #698096,
                 grayText: #7e8299,
                 LightText: #d1e3f5,
-                lightBackground: #F1F5F9
+                lightBackground: #F1F5F9,
+                cardBoxShadow: rgba(82, 63, 105, 0.05) 0px 0px 30px,
+                primaryBoxShadow: 0px 3px 10px #cceafc,
         ),
         // 暗夜
         dark: (

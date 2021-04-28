@@ -144,6 +144,7 @@ export default {
     top: 50%;
     left: 30px;
     transform: translate3d(0,-50%,0);
+    z-index: 2;
   }
   .search-group > svg g [fill]{
     @include fill(grayText);
@@ -159,6 +160,7 @@ export default {
     padding-right: 200px;
     font-size: 20px;
     @include fontColor(LightText);
+    @include box-shadow(cardBoxShadow);
   }
   .search{
     position: absolute;
@@ -172,6 +174,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    //@include box-shadow(primaryBoxShadow);
   }
   .search span{
     color: #fff;
