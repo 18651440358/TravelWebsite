@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-cloak>
     <router-view/>
   </div>
 </template>
@@ -29,6 +29,9 @@ export default {
 
 <style lang="scss">
   @import "./assets/style/theme/_handle.scss";
+  [v-cloak]{
+    display: none;
+  }
   // 去除浏览器默认样式
   body{
     margin: 0;
@@ -54,6 +57,7 @@ export default {
   // 统一样式
   *,*:before,*:after{
     box-sizing: border-box;
+    outline: none;
   }
   img{
     display: block;

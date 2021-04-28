@@ -85,7 +85,6 @@ export default {
   }
   .zc-row.flex.justify-between{
     justify-content: space-between;
-    background: yellow;
   }
   .zc-row.flex.justify-around{
     justify-content: space-around;
