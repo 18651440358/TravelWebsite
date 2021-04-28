@@ -58,6 +58,7 @@ export default {
 <style scoped lang="scss">
   // 容器
   .zc-row{
+    width: 100%;
     position: relative;
   }
   // 清除浮动，防止父级高度塌陷
@@ -73,6 +74,9 @@ export default {
   .zc-row.flex{
     display: flex;
   }
+  .zc-row.flex::before,.zc-row.flex:after{
+    content: none;
+  }
   .zc-row.flex.justify-center{
     justify-content: center;
   }
@@ -81,6 +85,7 @@ export default {
   }
   .zc-row.flex.justify-between{
     justify-content: space-between;
+    background: yellow;
   }
   .zc-row.flex.justify-around{
     justify-content: space-around;

@@ -19,3 +19,5 @@
 > ### Update log on April 28, 2021
 > Create a new folder "**content**" and move the original navigation component "**nav**" into it. The folder "**content**" will specifically store other page components that are not part of MetisUI.
 
+> ### Update log on April 29, 2021
+> Fixed the bug that the ```<zc-row>``` component had extra white space on both sides when using the flex property.

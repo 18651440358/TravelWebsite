@@ -2,15 +2,16 @@
 <!--顶部导航-->
   <nav class="zc-nav">
     <zc-container>
-      <div class="nav-content">
+      <zc-row>
+        <div class="nav-content">
 <!--        logo-->
-        <router-link class="nav-logo" to="/">
+          <router-link class="nav-logo" to="/">
           <span>Tootravel</span>
-        </router-link>
+          </router-link>
 <!--        导航部分-->
-        <ul class="menu-box">
+          <ul class="menu-box">
           <li>
-            <router-link class="menu-item active" to="/">
+            <router-link class="menu-item" to="/" :class="{'active': NavStyle[0]}">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"/>
@@ -21,7 +22,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="menu-item" to="/">
+            <router-link class="menu-item" to="/" :class="{'active': NavStyle[1]}">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"/>
@@ -33,7 +34,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="menu-item" to="/">
+            <router-link class="menu-item" to="/" :class="{'active': NavStyle[2]}">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"/>
@@ -45,7 +46,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="menu-item" to="/">
+            <router-link class="menu-item" to="/" :class="{'active': NavStyle[3]}">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"/>
@@ -58,8 +59,9 @@
           </li>
         </ul>
 <!--        头像-->
-        <zc-avatar></zc-avatar>
-      </div>
+          <zc-avatar></zc-avatar>
+        </div>
+      </zc-row>
     </zc-container>
   </nav>
 </template>
@@ -67,9 +69,24 @@
 <script>
 import ZcContainer from "@/component/container/container";
 import ZcAvatar from "@/component/avatar/avatar";
+import ZcRow from "@/component/row/row";
 export default {
   name: "zc-nav",
-  components: {ZcAvatar, ZcContainer}
+  components: {ZcRow, ZcAvatar, ZcContainer},
+  computed: {
+    NavStyle(){
+      const path = this.$route.path;
+      return [
+          ["/landing"].includes(path),
+          [""].includes(path),
+          [""].includes(path),
+          [""].includes(path)
+      ]
+    }
+  },
+  mounted() {
+    console.log(this.NavStyle)
+  }
 }
 </script>
 
