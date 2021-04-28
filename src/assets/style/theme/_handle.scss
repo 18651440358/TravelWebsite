@@ -19,17 +19,31 @@
 // 字体颜色
 @mixin fontColor($color) {
   @include theme {
-    color: value($color);
+    color: value($color)!important;
   }
 }
 
 // 背景颜色
 @mixin bgColor($color){
   @include theme {
-    background-color: value($color);
+    background-color: value($color)!important;
   }
 }
 @mixin bgColorRgba($opacity,$color){
-  background-color: rgba(value($color),$opacity);
+  background-color: rgba(value($color),$opacity)!important;
 }
 
+// svg填充
+@mixin fill($color){
+  @include theme {
+    fill: value($color)!important;
+  }
+}
+
+// 延时动画
+@mixin transition($value){
+  @include theme {
+    transition: color $value linear,
+                fill $value linear;
+  }
+}

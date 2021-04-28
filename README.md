@@ -12,4 +12,10 @@
 - Metis UI
 > Metis UI is a multi-component UI framework based on Vue.js that I have learned from the mainstream UI frameworks on the market and modified to cater to my programming habits.
 
-立一个flag，我要天天提交代码👀
+
+
+# New version
+
+> ### Update log on April 28, 2021
+> Create a new folder "**content**" and move the original navigation component "**nav**" into it. The folder "**content**" will specifically store other page components that are not part of MetisUI.
+

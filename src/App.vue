@@ -10,6 +10,8 @@ export default {
   mounted() {
     // 检测主题
     this.checkTheme();
+
+    this.$i18n.locale = "en_US"
   },
   methods: {
     // 检测主题
@@ -44,6 +46,10 @@ export default {
   }
   h1,h2,h3,h4,h5,h6,p{
     margin: 0;
+  }
+  ul,li{
+    list-style: none;
+    padding: 0;
   }
   // 统一样式
   *,*:before,*:after{

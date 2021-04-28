@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ZcNav from "@/component/nav/nav";
+import ZcNav from "@/content/nav/nav";
 export default {
   name: "zc-page-landing",
   components: {ZcNav}
