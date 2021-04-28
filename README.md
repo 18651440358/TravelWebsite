@@ -17,7 +17,7 @@
 # New version
 
 > ### Update log on April 29, 2021
-> Fixed the bug that the ```<zc-row>``` component had extra white space on both sides when using the flex property.
+> Fixed the bug that the ```<zc-row>``` component had extra white space on both sides when using the **flex** property.
 
 
 > ### Update log on April 28, 2021
