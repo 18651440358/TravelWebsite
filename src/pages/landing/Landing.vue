@@ -49,6 +49,41 @@
                   <router-link to="/">{{$t('tonight')[1]}}</router-link>
                 </div>
               </div>
+<!--              热门景点-->
+              <div class="top-destination">
+                <div class="title-group">
+                  <h3>{{$t('top-destination')}}</h3>
+                  <div class="button-group">
+                    <a :class="{'active':prevButton}">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <polygon points="0 0 24 0 24 24 0 24"/>
+                          <rect fill="#000000" transform="translate(12.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/>
+                          <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) "/>
+                        </g>
+                      </svg>
+                    </a>
+                    <a :class="{'active':nextButton}">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <polygon points="0 0 24 0 24 24 0 24"/>
+                          <rect fill="#000000" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1"/>
+                          <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "/>
+                        </g>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <swiper class="destinations">
+                  <swiper-slide>
+                    <div class="destination-item">
+                      <card-destination title="Hotels in India"
+                                        title-en="Hotels in India"
+                                        :hotels="3000"></card-destination>
+                    </div>
+                  </swiper-slide>
+                </swiper>
+              </div>
             </zc-col>
             <zc-col :grid="9" style="height: 100%">
               <div class="map-container">
@@ -67,9 +102,12 @@ import ZcNav from "@/content/nav/nav";
 import ZcContainer from "@/component/container/container";
 import ZcRow from "@/component/row/row";
 import ZcCol from "@/component/col/col";
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/swiper-bundle.css';
+import CardDestination from "@/content/card-destination/card-destination";
 export default {
   name: "zc-page-landing",
-  components: {ZcCol, ZcRow, ZcContainer, ZcNav},
+  components: {CardDestination, ZcCol, ZcRow, ZcContainer, ZcNav, Swiper, SwiperSlide},
   computed: {
     sayHello(){
       let hello = 0
@@ -90,13 +128,17 @@ export default {
   },
   data() {
     return {
-      //
+      // 上一个
+      prevButton: false,
+      // 下一个
+      nextButton: true,
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+
 @import "../../assets/style/theme/_handle.scss";
   // 着落页
   .zc-page-landing{
@@ -174,7 +216,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    //@include box-shadow(primaryBoxShadow);
   }
   .search span{
     color: #fff;
@@ -196,6 +237,44 @@ export default {
    @include fontColor(primary);
     text-decoration: underline;
   }
+  // 热门景点
+  .top-destination{
+    margin-top: 30px;
+  }
+  .title-group{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .title-group a{
+    padding: .5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    @include transition(150ms);
+  }
+  .title-group a svg g [fill]{
+    @include fill(LightText);
+  }
+  .title-group a:hover{
+    @include bgColor(lightBackground);
+  }
+  .title-group a:first-child{
+    margin-right: .3rem;
+  }
+  .title-group a.active svg g [fill]{
+    @include fill(primaryText);
+  }
+  // 景点
+  .destinations{
+    margin-top: 10px;
+  }
+  .destination-item{
+    width: 170px;
+    @include box-shadow(cardBoxShadow);
+  }
+
   // 地图容器
   .map-container{
     height: 100%;
@@ -212,7 +291,8 @@ export default {
     "hello": ["早上好！","上午好！","中午好！","下午好！","晚上好！"],
     "title": ["","旅行 ","触手可及<br>现在开始你的假期"],
     "search": "Let's Go",
-    "tonight": ["或者","今晚在附近寻找酒店？"]
+    "tonight": ["或者","今晚在附近寻找酒店？"],
+    "top-destination": "热门目的地"
   },
   "en_US": {
     "greet": "Hey ",
@@ -220,7 +300,8 @@ export default {
     "hello": ["Good morning","Good morning","Good noon","Good afternoon","Good evening"],
     "title": ["","Where ","are you<br/>going to go?"],
     "search": "Let's Go",
-    "tonight": ["or","looking for a hotel nearby tonight?"]
+    "tonight": ["or","looking for a hotel nearby tonight?"],
+    "top-destination": "Top Destinations"
   }
 }
 </i18n>
