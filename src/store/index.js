@@ -9,6 +9,10 @@ export default new Vuex.Store({
     currentlyUser: {
       userName: undefined,
       userCode: undefined
+    },
+    // 汇率
+    exchangeRate: {
+      USA: 0.1545
     }
   },
   mutations: {

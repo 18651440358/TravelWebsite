@@ -6,12 +6,16 @@
       <img :src="coverSrc"  :alt="title"/>
     </div>
 <!--    文字-->
-    <div class="destination-content">
+    <div class="destination-content swiper-no-swiping">
       <h3 v-if="$i18n.locale === 'zh-CN'">{{title}}</h3>
       <h3 v-else>{{titleEn}}</h3>
       <div class="hotel-content">
-        <span>{{ hotelNumbers }}</span>
-        <span>{{ hotelNumbers }}</span>
+        <span class="number">{{ hotelNumbers }}</span>
+        <span>{{ $t('hotel') }} - </span>
+        <div class="avg">
+          <span>{{$t('avg')}}</span>
+          <span>{{price}}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -24,7 +28,8 @@ export default {
     src: String,
     title: String,
     titleEn: String,
-    hotels: Number
+    hotels: Number,
+    avg: Number,
   },
   computed: {
     coverSrc(){
@@ -46,6 +51,13 @@ export default {
         if (!(counter % 3) && i !== 0) { result = ',' + result; }
       }
       return result;
+    },
+    price(){
+      let _this = this;
+      if(this.$i18n.locale === 'zh-CN')
+        return "¥" + _this.avg.toFixed(0)
+      else
+        return "$" + (_this.avg * _this.$store.state.exchangeRate.USA).toFixed(0)
     }
   }
 }
@@ -77,15 +89,32 @@ export default {
     font-size: 14px;
     font-weight: 700;
   }
+  .hotel-content{
+    display: flex;
+    align-items: center;
+    @include fontColor(regularText);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .hotel-content .number{
+    margin-right: 5px;
+  }
+  .hotel-content .avg{
+    font-weight: 600;
+    margin-left: 3px;
+    @include fontColor(grayText);
+  }
 </style>
 
 <i18n>
 {
   "zh-CN": {
-
+    "hotel": "家酒店",
+    "avg": "平均"
   },
   "en_US": {
-
+    "hotel": "Hotels",
+    "avg": "Avg."
   }
 }
 </i18n>

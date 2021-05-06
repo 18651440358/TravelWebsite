@@ -79,7 +79,9 @@
                     <div class="destination-item">
                       <card-destination title="Hotels in India"
                                         title-en="Hotels in India"
-                                        :hotels="3000"></card-destination>
+                                        :src="''"
+                                        :hotels="3000"
+                                        :avg="300"></card-destination>
                     </div>
                   </swiper-slide>
                 </swiper>
@@ -98,6 +100,7 @@
 </template>
 
 <script>
+import destinations from '@/data/destinations';
 import ZcNav from "@/content/nav/nav";
 import ZcContainer from "@/component/container/container";
 import ZcRow from "@/component/row/row";
@@ -133,6 +136,9 @@ export default {
       // 下一个
       nextButton: true,
     }
+  },
+  mounted() {
+    console.log(destinations);
   }
 }
 </script>

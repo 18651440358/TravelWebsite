@@ -21,7 +21,6 @@ export default {
           "theme",
           theme ? theme : "light"
       );
-      console.log(this.$route.path)
     }
   }
 }
