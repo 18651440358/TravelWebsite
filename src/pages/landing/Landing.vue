@@ -142,3 +142,172 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+
+@import "../../assets/style/theme/_handle.scss";
+// 着落页
+.zc-page-landing{
+  width: 100vw;
+  @include bgColor(lightBackground);
+}
+// header部分
+header{
+  width: 100vw;
+  height: 100vh;
+  min-width: 1200px;
+  min-height: 768px;
+  padding-bottom: 30px;
+}
+// 巨幕
+.giant-screen{
+  margin-top: 30px;
+  height: calc(100% - 65px - 30px);
+}
+// 欢迎
+.welcome-content h3{
+  font-size: 1.2rem;
+}
+.welcome-content p{
+  font-weight: 500;
+  @include fontColor(regularText);
+}
+// title
+.title-content{
+  padding-top: 50px;
+}
+.title{
+  font-size: 48px;
+}
+.title .highlight{
+  @include fontColor(primary);
+}
+// search
+.search-group{
+  margin-top: 30px;
+  position: relative;
+}
+.search-group > svg{
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translate3d(0,-50%,0);
+  z-index: 2;
+}
+.search-group > svg g [fill]{
+  @include fill(grayText);
+  opacity: .5;
+}
+.search-group input{
+  width: 100%;
+  background: #fff;
+  height: 80px;
+  border-radius: 40px;
+  border: none;
+  padding-left: 80px;
+  padding-right: 200px;
+  font-size: 20px;
+  @include fontColor(LightText);
+  @include box-shadow(cardBoxShadow);
+}
+.search{
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+  right: 7px;
+  height: 66px;
+  border-radius: 33px;
+  width: 180px;
+  @include bgColor(primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search span{
+  color: #fff;
+  font-weight: 500;
+  margin-right: 10px;
+}
+// tonight
+.tonight{
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  @include transition(150ms);
+}
+.tonight .highlight{
+  @include fontColor(LightText);
+  margin-right: 10px;
+}
+.tonight a:hover{
+  @include fontColor(primary);
+  text-decoration: underline;
+}
+// 热门景点
+.top-destination{
+  margin-top: 30px;
+}
+.title-group{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.title-group a{
+  padding: .5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .5rem;
+  @include transition(150ms);
+}
+.title-group a svg g [fill]{
+  @include fill(LightText);
+}
+.title-group a:hover{
+  @include bgColor(lightBackground);
+}
+.title-group a:first-child{
+  margin-right: .3rem;
+}
+.title-group a.active svg g [fill]{
+  @include fill(primaryText);
+}
+// 景点
+.destinations{
+  margin-top: 10px;
+}
+.destination-item{
+  width: 170px;
+  @include box-shadow(cardBoxShadow);
+}
+
+// 地图容器
+.map-container{
+  height: 100%;
+  @include bgColor(primary);
+  border-radius: 2rem;
+}
+</style>
+
+<i18n>
+{
+  "zh-CN": {
+    "greet": "您好 ",
+    "defaultName": "旅行家，",
+    "hello": ["早上好！","上午好！","中午好！","下午好！","晚上好！"],
+    "title": ["","旅行 ","触手可及<br>现在开始你的假期"],
+    "search": "Let's Go",
+    "tonight": ["或者","今晚在附近寻找酒店？"],
+    "top-destination": "热门目的地"
+  },
+  "en_US": {
+    "greet": "Hey ",
+    "defaultName": "Traveler,",
+    "hello": ["Good morning","Good morning","Good noon","Good afternoon","Good evening"],
+    "title": ["","Where ","are you<br/>going to go?"],
+    "search": "Let's Go",
+    "tonight": ["or","looking for a hotel nearby tonight?"],
+    "top-destination": "Top Destinations"
+  }
+}
+</i18n>
