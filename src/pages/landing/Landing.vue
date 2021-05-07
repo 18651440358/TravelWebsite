@@ -74,14 +74,14 @@
                     </a>
                   </div>
                 </div>
-                <swiper class="destinations">
-                  <swiper-slide>
+                <swiper class="destinations" :options="swiperOptions">
+                  <swiper-slide v-for="(item,index) in topDestination" :key="'topDestination' + index">
                     <div class="destination-item">
-                      <card-destination title="Hotels in India"
-                                        title-en="Hotels in India"
-                                        :src="''"
-                                        :hotels="3000"
-                                        :avg="300"></card-destination>
+                      <card-destination :title="item.title"
+                                        :title-en="item.titleEn"
+                                        :src="item.cover"
+                                        :hotels="item.hotels"
+                                        :avg="item.avg"></card-destination>
                     </div>
                   </swiper-slide>
                 </swiper>
@@ -100,7 +100,6 @@
 </template>
 
 <script>
-import destinations from '@/data/destinations';
 import ZcNav from "@/content/nav/nav";
 import ZcContainer from "@/component/container/container";
 import ZcRow from "@/component/row/row";
@@ -135,10 +134,37 @@ export default {
       prevButton: false,
       // 下一个
       nextButton: true,
+
+      // 滚动轮播配置
+      swiperOptions: {
+        slidesPerView: 3,
+        keyboard: true
+      },
+
+      // 热门城市
+      topDestination: []
+
     }
   },
   mounted() {
-    console.log(destinations);
+    // 初始化
+    this.initialization();
+  },
+  methods: {
+    // 初始化
+    initialization(){
+      // 加载热门景区
+      const destinations = require('@/data/destinations')
+      let popular = [];
+      // 随机去除6个
+      while (popular.length < 6){
+        var index = Math.floor(Math.random() * destinations.length);
+        if (index < destinations.length)
+          popular.push(destinations.splice(index,index + 1)[0])
+      }
+      this.topDestination = popular
+
+    }
   }
 }
 </script>
@@ -207,7 +233,7 @@ header{
   padding-left: 80px;
   padding-right: 200px;
   font-size: 20px;
-  @include fontColor(LightText);
+  @include fontColor(grayText);
   @include box-shadow(cardBoxShadow);
 }
 .search{
@@ -236,7 +262,7 @@ header{
   @include transition(150ms);
 }
 .tonight .highlight{
-  @include fontColor(LightText);
+  @include fontColor(grayText);
   margin-right: 10px;
 }
 .tonight a:hover{
@@ -261,7 +287,7 @@ header{
   @include transition(150ms);
 }
 .title-group a svg g [fill]{
-  @include fill(LightText);
+  @include fill(grayText);
 }
 .title-group a:hover{
   @include bgColor(lightBackground);
@@ -278,7 +304,7 @@ header{
 }
 .destination-item{
   width: 170px;
-  @include box-shadow(cardBoxShadow);
+  display: inline-block;
 }
 
 // 地图容器

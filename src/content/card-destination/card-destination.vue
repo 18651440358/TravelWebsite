@@ -3,7 +3,7 @@
   <div class="card-destination">
     <!--    封面-->
     <div class="destination-cover">
-      <img :src="coverSrc"  :alt="title"/>
+      <img :src="src" :alt="title" @error.once="defaultImg" />
     </div>
     <!--    文字-->
     <div class="destination-content swiper-no-swiping">
@@ -31,16 +31,14 @@ export default {
     hotels: Number,
     avg: Number,
   },
+  methods: {
+    // 破损图片
+    defaultImg(event){
+      event.currentTarget.src = require("./static/default.jpg");
+      return true;
+    }
+  },
   computed: {
-    coverSrc(){
-      var ImgObj = new Image();
-      ImgObj.src = this.src;
-      if(ImgObj.fileSize > 0 || (ImgObj.width > 0 && ImgObj.height > 0))
-        return this.src;
-      else
-        return require("./static/default.jpg");
-
-    },
     hotelNumbers(){
       let num = this.hotels
       var result = '', counter = 0;
@@ -102,7 +100,6 @@ export default {
 .hotel-content .avg{
   font-weight: 600;
   margin-left: 3px;
-  @include fontColor(grayText);
 }
 </style>
 
@@ -110,11 +107,11 @@ export default {
 {
   "zh-CN": {
     "hotel": "家酒店",
-    "avg": "平均"
+    "avg": "平均 "
   },
   "en_US": {
     "hotel": "Hotels",
-    "avg": "Avg."
+    "avg": "Avg. "
   }
 }
 </i18n>

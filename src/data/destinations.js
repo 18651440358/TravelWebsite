@@ -1,4 +1,4 @@
-export default [
+module.exports = [
     {
         cover: require("@/assets/images/destinations/2DCF0929EEACEED7318A8F2A109CF7E5.jpg"),
         title: "北卡罗来纳州夏洛特",
