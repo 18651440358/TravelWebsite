@@ -69,7 +69,6 @@ export default {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  @include box-shadow(cardBoxShadow);
 }
 .destination-cover > img{
   width: 100%;
@@ -86,6 +85,8 @@ export default {
 .destination-content h3{
   font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .hotel-content{
   display: flex;

@@ -54,7 +54,7 @@
                 <div class="title-group">
                   <h3>{{$t('top-destination')}}</h3>
                   <div class="button-group">
-                    <a :class="{'active':prevButton}">
+                    <a @click="$refs.destinationSwiper.$swiper.slidePrev()" :class="{'active':destinationIndex > 0}">
                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                           <polygon points="0 0 24 0 24 24 0 24"/>
@@ -63,7 +63,7 @@
                         </g>
                       </svg>
                     </a>
-                    <a :class="{'active':nextButton}">
+                    <a @click="$refs.destinationSwiper.$swiper.slideNext()" :class="{'active':destinationIndex < 3}">
                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                           <polygon points="0 0 24 0 24 24 0 24"/>
@@ -74,7 +74,7 @@
                     </a>
                   </div>
                 </div>
-                <swiper class="destinations" :options="swiperOptions">
+                <swiper @slideChange="slideChange" class="destinations" :options="swiperOptions" ref="destinationSwiper">
                   <swiper-slide v-for="(item,index) in topDestination" :key="'topDestination' + index">
                     <div class="destination-item">
                       <card-destination :title="item.title"
@@ -89,7 +89,50 @@
             </zc-col>
             <zc-col :grid="9" style="height: 100%">
               <div class="map-container">
-
+                <fusioncharts :type="chart.type"
+                              :width="chart.width"
+                              :height="chart.height"
+                              :dataFormat="chart.dataFormat"
+                              :dataSource="chart.dataSource"
+                ></fusioncharts>
+<!--                进度-->
+                <div class="map-step">
+                  <div class="map-step-item active">
+                    <div class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <rect x="0" y="0" width="24" height="24"/>
+                          <path d="M5,10.5 C5,6 8,3 12.5,3 C17,3 20,6.75 20,10.5 C20,12.8325623 17.8236613,16.03566 13.470984,20.1092932 C12.9154018,20.6292577 12.0585054,20.6508331 11.4774555,20.1594925 C7.15915182,16.5078313 5,13.2880005 5,10.5 Z M12.5,12 C13.8807119,12 15,10.8807119 15,9.5 C15,8.11928813 13.8807119,7 12.5,7 C11.1192881,7 10,8.11928813 10,9.5 C10,10.8807119 11.1192881,12 12.5,12 Z" fill="#000000" fill-rule="nonzero"/>
+                        </g>
+                      </svg>
+                    </div>
+                    <span>{{$t('map-step')[0]}}</span>
+                  </div>
+                  <div class="map-step-item">
+                    <div class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <rect x="0" y="0" width="24" height="24"/>
+                          <rect fill="#000000" x="2" y="4" width="19" height="4" rx="1"/>
+                          <path d="M3,10 L6,10 C6.55228475,10 7,10.4477153 7,11 L7,19 C7,19.5522847 6.55228475,20 6,20 L3,20 C2.44771525,20 2,19.5522847 2,19 L2,11 C2,10.4477153 2.44771525,10 3,10 Z M10,10 L13,10 C13.5522847,10 14,10.4477153 14,11 L14,19 C14,19.5522847 13.5522847,20 13,20 L10,20 C9.44771525,20 9,19.5522847 9,19 L9,11 C9,10.4477153 9.44771525,10 10,10 Z M17,10 L20,10 C20.5522847,10 21,10.4477153 21,11 L21,19 C21,19.5522847 20.5522847,20 20,20 L17,20 C16.4477153,20 16,19.5522847 16,19 L16,11 C16,10.4477153 16.4477153,10 17,10 Z" fill="#000000" opacity="0.3"/>
+                        </g>
+                      </svg>
+                    </div>
+                    <span>{{$t('map-step')[1]}}</span>
+                  </div>
+                  <div class="map-step-item">
+                    <div class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <polygon points="0 0 24 0 24 24 0 24"/>
+                          <path d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                          <path d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
+                        </g>
+                      </svg>
+                    </div>
+                    <span>{{$t('map-step')[2]}}</span>
+                  </div>
+                </div>
               </div>
             </zc-col>
           </zc-row>
@@ -107,9 +150,26 @@ import ZcCol from "@/component/col/col";
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css';
 import CardDestination from "@/content/card-destination/card-destination";
+import dataSource from './dataSource';
+
+import Vue from 'vue';
+import VueFusionCharts from 'vue-fusioncharts';
+import FusionCharts from 'fusioncharts';
+import Maps from 'fusioncharts/fusioncharts.maps'
+import World from 'fusioncharts/maps/fusioncharts.europewithcountries.js'
+Vue.use(VueFusionCharts, FusionCharts, Maps, World)
+
 export default {
   name: "zc-page-landing",
-  components: {CardDestination, ZcCol, ZcRow, ZcContainer, ZcNav, Swiper, SwiperSlide},
+  components: {
+    CardDestination,
+    ZcCol,
+    ZcRow,
+    ZcContainer,
+    ZcNav,
+    Swiper,
+    SwiperSlide
+  },
   computed: {
     sayHello(){
       let hello = 0
@@ -130,25 +190,31 @@ export default {
   },
   data() {
     return {
-      // 上一个
-      prevButton: false,
-      // 下一个
-      nextButton: true,
+      destinationIndex: 0,
 
       // 滚动轮播配置
       swiperOptions: {
         slidesPerView: 3,
-        keyboard: true
       },
 
       // 热门城市
-      topDestination: []
+      topDestination: [],
 
+      // 地图
+      chart: {
+        type: 'europewithcountries',
+        width: '100%',
+        height: '110%',
+        dataFormat: 'json',
+        dataSource: dataSource
+      }
     }
   },
   mounted() {
     // 初始化
     this.initialization();
+
+    console.log(dataSource)
   },
   methods: {
     // 初始化
@@ -164,6 +230,9 @@ export default {
       }
       this.topDestination = popular
 
+    },
+    slideChange($event){
+      this.destinationIndex = $event.activeIndex
     }
   }
 }
@@ -301,6 +370,7 @@ header{
 // 景点
 .destinations{
   margin-top: 10px;
+  filter: drop-shadow(0 0 10px rgba(#698096, 0.2));
 }
 .destination-item{
   width: 170px;
@@ -312,7 +382,68 @@ header{
   height: 100%;
   @include bgColor(primary);
   border-radius: 2rem;
+  overflow: hidden;
+  position: relative;
 }
+// 步骤条
+.map-step{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  position: absolute;
+  bottom: 50px;
+}
+.map-step-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 40px;
+  position: relative;
+}
+.icon:after{
+  content: '';
+  width: 90px;
+  height: 2px;
+  background: rgba(255,255,255, .2);
+  position: absolute;
+  right: -90px;
+  top: 25px;
+}
+.map-step-item:last-child .icon:after{
+  content: none;
+}
+.icon{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+.icon svg g [fill]{
+  fill: #fff;
+}
+.map-step-item.active .icon{
+  background: #fff;
+}
+
+.map-step-item.active .icon svg g [fill]{
+  fill: #0080FF;
+}
+.map-step-item span{
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  margin-top: 10px;
+  font-weight: 500;
+}
+.map-step-item.active span{
+  color: #fff!important;
+}
+
 </style>
 
 <i18n>
@@ -324,7 +455,8 @@ header{
     "title": ["","旅行 ","触手可及<br>现在开始你的假期"],
     "search": "Let's Go",
     "tonight": ["或者","今晚在附近寻找酒店？"],
-    "top-destination": "热门目的地"
+    "top-destination": "热门目的地",
+    "map-step": ["目的地", "住宿时间", "游客登记"]
   },
   "en_US": {
     "greet": "Hey ",
@@ -333,7 +465,24 @@ header{
     "title": ["","Where ","are you<br/>going to go?"],
     "search": "Let's Go",
     "tonight": ["or","looking for a hotel nearby tonight?"],
-    "top-destination": "Top Destinations"
+    "top-destination": "Top Destinations",
+    "map-step": ["Location", "Stay Dates", "Guests"]
   }
 }
 </i18n>
+
+<style lang="scss">
+  .zc-page-landing .fc__tooltip.fusioncharts-div{
+    background: rgba(255,255,255,0.1)!important;
+    border: none!important;
+    color: #fff!important;
+    font-size: 14px!important;
+    backdrop-filter: blur(3px);
+    padding: .5rem .75rem!important;
+    border-radius: 50px!important;
+    font-weight: bold;
+    font-family: 'poppins',"SourceHanSans",Helvetica,sans-serif !important;
+    text-shadow: 0 0 3px #0080FF;
+    box-shadow: 0 0 10px rgba(#698096, 0.2)!important;
+  }
+</style>

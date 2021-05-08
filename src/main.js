@@ -15,6 +15,7 @@ import i18n from './i18n'
 // vuex
 import store from './store'
 
+
 new Vue({
   router,
   i18n,

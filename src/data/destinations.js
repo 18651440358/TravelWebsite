@@ -105,7 +105,7 @@ module.exports = [
         avg: 532
     },
     {
-        cover: require("@/assets/images/destinations/3105105331FA0A2E03883C457BAF72B0.jpg"),
+        cover: require("@/assets/images/destinations/D3433C62-1C81-4A74-BD9C-9EB95C3B52E0.png"),
         title: "阿鲁巴岛",
         titleEn: "Aruba",
         hotels: 34,

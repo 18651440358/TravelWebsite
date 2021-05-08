@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "fusioncharts": "^3.17.0",
     "swiper": "^6.5.8",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-fusioncharts": "^3.0.4",
     "vue-i18n": "^8.22.3",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
