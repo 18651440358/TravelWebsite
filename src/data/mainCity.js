@@ -1,252 +1,252 @@
 module.exports = [
     {
         name: "悉尼",
-        nameEn: "",
+        nameEn: "Sydney",
         countryCode: "AUS"
     },
     {
         name: "墨尔本",
-        nameEn: "",
+        nameEn: "Melbourne",
         countryCode: "AUS"
     },
     {
         name: "圣保罗",
-        nameEn: "",
+        nameEn: "Sao Paulo",
         countryCode: "BRA"
     },
     {
         name: "里约热内卢",
-        nameEn: "",
+        nameEn: "Rio de Janeiro",
         countryCode: "BRA"
     },
     {
         name: "多伦多",
-        nameEn: "",
+        nameEn: "Toronto",
         countryCode: "CAN"
     },
     {
         name: "温哥华",
-        nameEn: "",
+        nameEn: "Vancouver",
         countryCode: "CAN"
     },
     {
         name: "伯尔尼",
-        nameEn: "",
+        nameEn: "Bern",
         countryCode: "CHE"
     },
     {
         name: "柏林",
-        nameEn: "",
+        nameEn: "Berlin",
         countryCode: "DEU"
     },
     {
         name: "汉堡",
-        nameEn: "",
+        nameEn: "Burger",
         countryCode: "DEU"
     },
     {
         name: "哥本哈根",
-        nameEn: "",
+        nameEn: "Copenhagen",
         countryCode: "DNK"
     },
     {
         name: "亚历山大",
-        nameEn: "",
+        nameEn: "Alexander",
         countryCode: "EGY"
     },
     {
         name: "苏伊士",
-        nameEn: "",
+        nameEn: "Suez",
         countryCode: "EGY"
     },
     {
         name: "巴塞罗那",
-        nameEn: "",
+        nameEn: "Barcelona",
         countryCode: "ESP"
     },
     {
         name: "巴黎",
-        nameEn: "",
+        nameEn: "Paris",
         countryCode: "FRA"
     },
     {
         name: "敦刻尔克",
-        nameEn: "",
+        nameEn: "Dunkirk",
         countryCode: "FRA"
     },
     {
         name: "奥尔良",
-        nameEn: "",
+        nameEn: "Orleans",
         countryCode: "FRA"
     },
     {
         name: "努克",
-        nameEn: "",
+        nameEn: "Nuk",
         countryCode: "GRL"
     },
     {
         name: "雅典",
-        nameEn: "",
+        nameEn: "Athens",
         countryCode: "GRC"
     },
     {
         name: "孟买",
-        nameEn: "",
+        nameEn: "Mumbai",
         countryCode: "IND"
     },
     {
         name: "雷克雅未克",
-        nameEn: "",
+        nameEn: "Reykjavik",
         countryCode: "ISL"
     },
     {
         name: "米兰",
-        nameEn: "",
+        nameEn: "Milan",
         countryCode: "ITA"
     },
     {
         name: "威尼斯",
-        nameEn: "",
+        nameEn: "Venice",
         countryCode: "ITA"
     },
     {
         name: "佛罗伦萨",
-        nameEn: "",
+        nameEn: "Florence",
         countryCode: "ITA"
     },
     {
         name: "大阪",
-        nameEn: "",
+        nameEn: "Osaka",
         countryCode: "JPN"
     },
     {
         name: "横滨",
-        nameEn: "",
+        nameEn: "Yokohama",
         countryCode: "JPN"
     },
     {
         name: "东京",
-        nameEn: "",
+        nameEn: "Tokyo",
         countryCode: "JPN"
     },
     {
         name: "圣彼得堡",
-        nameEn: "",
+        nameEn: "St. Petersburg",
         countryCode: "RUS"
     },
     {
         name: "莫斯科",
-        nameEn: "",
+        nameEn: "Moscow",
         countryCode: "RUS"
     },
     {
         name: "曼谷",
-        nameEn: "",
+        nameEn: "Bangkok",
         countryCode: "THA"
     },
     {
         name: "纽约",
-        nameEn: "",
+        nameEn: "New York",
         countryCode: "USA"
     },
     {
         name: "洛杉矶",
-        nameEn: "",
+        nameEn: "Los Angeles",
         countryCode: "USA"
     },
     {
         name: "芝加哥",
-        nameEn: "",
+        nameEn: "Chicago",
         countryCode: "USA"
     },
     {
         name: "休斯敦",
-        nameEn: "",
+        nameEn: "Houston",
         countryCode: "USA"
     },
     {
         name: "旧金山",
-        nameEn: "",
+        nameEn: "San Francisco",
         countryCode: "USA"
     },
     {
         name: "波士顿",
-        nameEn: "",
+        nameEn: "Boston",
         countryCode: "USA"
     },
     {
         name: "底特律",
-        nameEn: "",
+        nameEn: "Detroit",
         countryCode: "USA"
     },
     {
         name: "上海",
-        nameEn: "",
+        nameEn: "Shanghai",
         countryCode: "CHN"
     },
     {
         name: "广州",
-        nameEn: "",
+        nameEn: "Guangzhou",
         countryCode: "CHN"
     },
     {
         name: "武汉",
-        nameEn: "",
+        nameEn: "Wuhan",
         countryCode: "CHN"
     },
     {
         name: "南京",
-        nameEn: "",
+        nameEn: "Nanjing",
         countryCode: "CHN"
     },
     {
         name: "成都",
-        nameEn: "",
+        nameEn: "Chengdu",
         countryCode: "CHN"
     },
     {
         name: "重庆",
-        nameEn: "",
+        nameEn: "Chongqing",
         countryCode: "CHN"
     },
     {
         name: "沈阳",
-        nameEn: "",
+        nameEn: "Shenyang",
         countryCode: "CHN"
     },
     {
         name: "西安",
-        nameEn: "",
+        nameEn: "Xi'an",
         countryCode: "CHN"
     },
     {
         name: "青岛",
-        nameEn: "",
+        nameEn: "Qingdao",
         countryCode: "CHN"
     },
     {
         name: "苏州",
-        nameEn: "",
+        nameEn: "Suzhou",
         countryCode: "CHN"
     },
     {
         name: "杭州",
-        nameEn: "",
+        nameEn: "Hangzhou",
         countryCode: "CHN"
     },
     {
         name: "伦敦",
-        nameEn: "",
+        nameEn: "London",
         countryCode: "GBR"
     },
     {
         name: "爱丁堡",
-        nameEn: "",
+        nameEn: "Edinburgh",
         countryCode: "GBR"
     },
     {
         name: "台北",
-        nameEn: "",
+        nameEn: "Taipei",
         countryCode: "TWN"
     },
 ]
