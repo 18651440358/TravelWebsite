@@ -16,6 +16,10 @@
 
 # New version
 
+> ### Update log on May 10, 2021
+> The landing page of the website has been basically completed, everyone can comment together.
+> You can access via ```/landing```
+
 > ### Update log on April 29, 2021
 > Fixed the bug that the ```<zc-row>``` component had extra white space on both sides when using the **flex** property.
 
