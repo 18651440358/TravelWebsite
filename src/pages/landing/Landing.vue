@@ -23,7 +23,7 @@
                   <span v-html="$t('title')[2]"></span>
                 </h1>
                 <!--                search-->
-                <div class="search-group">
+                <div ref="search_group" class="search-group">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 24 24" version="1.1">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                       <rect x="0" y="0" width="24" height="24"/>
@@ -31,7 +31,8 @@
                       <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"/>
                     </g>
                   </svg>
-                  <input type="text" value="Destination or a hotel name"/>
+                  <input id="searchDestination" type="text" @input="handleInput" v-model="searchValue" />
+                  <label for="searchDestination" v-if="showPlaceholder">{{$t('search-placeholder')}}</label>
                   <a class="search">
                     <span>{{$t('search')}}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -42,6 +43,22 @@
                       </g>
                     </svg>
                   </a>
+                </div>
+<!--                提示框-->
+                <div class="search-tip-container" :style="tipStyle">
+                  <vue-scroll :ops="ops">
+                    <div class="tip-head">
+                      <span>{{$t('tip-head')}}</span>
+                      <span class="destination">{{searchValue}}</span>
+                    </div>
+                    <ul>
+                      <li v-for="(tip,index) in tipList" :key="'tipList' + index">
+                        <div class="tip-icon"></div>
+                        <span>{{tip}}</span>
+                        <span>{{searchValue}}</span>
+                      </li>
+                    </ul>
+                  </vue-scroll>
                 </div>
                 <!--                tonight-->
                 <div class="tonight">
@@ -159,6 +176,7 @@ import Maps from 'fusioncharts/fusioncharts.maps'
 import World from 'fusioncharts/maps/fusioncharts.europewithcountries.js'
 Vue.use(VueFusionCharts, FusionCharts, Maps, World)
 
+import VueScroll from 'vuescroll'
 export default {
   name: "zc-page-landing",
   components: {
@@ -168,7 +186,8 @@ export default {
     ZcContainer,
     ZcNav,
     Swiper,
-    SwiperSlide
+    SwiperSlide,
+    VueScroll
   },
   computed: {
     sayHello(){
@@ -186,6 +205,12 @@ export default {
     },
     getUserName(){
       return this.$store.state.count || this.$t('defaultName')
+    },
+    tipStyle(){
+      return {
+        width: `${this.searchPosition.width - 60}px`,
+        transform: `translate3d(${this.searchPosition.left + 30}px,${this.searchPosition.top + this.searchPosition.height + 40}px,0)`
+      }
     }
   },
   data() {
@@ -200,6 +225,30 @@ export default {
       // 热门城市
       topDestination: [],
 
+      searchData: {
+        country: {},
+        mainCity: {}
+      },
+
+      // 是否显示占位
+      showPlaceholder: true,
+      searchValue: '',
+      searchPosition: {
+        width: 0,
+        height: 0,
+        left: 0,
+        top: 0
+      },
+      ops: {
+        vuescroll: {},
+        scrollPanel: {},
+        rail: {},
+        bar: {
+          background: '#698096'
+        }
+      },
+      tipList: [],
+
       // 地图
       chart: {
         type: 'europewithcountries',
@@ -210,11 +259,19 @@ export default {
       }
     }
   },
+  watch: {
+    searchValue: function (val){
+      const value = [];
+      this.searchData.country.forEach((item)=>{
+        if (item.indexOf(val) === -1)
+          value.push(item)
+      })
+
+    }
+  },
   mounted() {
     // 初始化
     this.initialization();
-
-    console.log(dataSource)
   },
   methods: {
     // 初始化
@@ -230,9 +287,27 @@ export default {
       }
       this.topDestination = popular
 
+      // 获取搜索框状态
+      this.searchPosition.width = this.$refs.search_group.getBoundingClientRect().width
+      this.searchPosition.height = this.$refs.search_group.getBoundingClientRect().height
+      this.searchPosition.top = this.$refs.search_group.getBoundingClientRect().top
+      this.searchPosition.left = this.$refs.search_group.getBoundingClientRect().left
+
+      const country = require('@/data/country');
+      const mainCity = require('@/data/mainCity');
+
+      this.searchData.country = country
+      this.searchData.mainCity = mainCity
+
     },
     slideChange($event){
       this.destinationIndex = $event.activeIndex
+    },
+    handleInput(){
+      if (this.searchValue.trim() === "")
+        this.showPlaceholder = true
+      else
+        this.showPlaceholder = false
     }
   }
 }
@@ -302,8 +377,16 @@ header{
   padding-left: 80px;
   padding-right: 200px;
   font-size: 20px;
-  @include fontColor(grayText);
   @include box-shadow(cardBoxShadow);
+}
+.search-group label{
+  font-size: 20px;
+  @include fontColor(grayText);
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+  cursor: text;
 }
 .search{
   position: absolute;
@@ -322,6 +405,25 @@ header{
   color: #fff;
   font-weight: 500;
   margin-right: 10px;
+}
+// 提示框
+.search-tip-container{
+  @include bgColor(defaultBackground);
+  @include box-shadow(cardBoxShadow);
+  border-radius: 1rem;
+  padding: 30px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  max-height: 300px;
+}
+.tip-head{
+  @include fontColor(grayText);
+  font-size: 13px;
+}
+.tip-head .destination{
+  font-weight: 500;
+  @include fontColor(primaryText);
 }
 // tonight
 .tonight{
@@ -456,7 +558,9 @@ header{
     "search": "Let's Go",
     "tonight": ["或者","今晚在附近寻找酒店？"],
     "top-destination": "热门目的地",
-    "map-step": ["目的地", "住宿时间", "游客登记"]
+    "map-step": ["目的地", "住宿时间", "游客登记"],
+    "search-placeholder": "请查询目的地或者酒店名字",
+    "tip-head": "正在对关键词进行搜索 "
   },
   "en_US": {
     "greet": "Hey ",
@@ -466,7 +570,9 @@ header{
     "search": "Let's Go",
     "tonight": ["or","looking for a hotel nearby tonight?"],
     "top-destination": "Top Destinations",
-    "map-step": ["Location", "Stay Dates", "Guests"]
+    "map-step": ["Location", "Stay Dates", "Guests"],
+    "search-placeholder": "Destination or a hotel name",
+    "tip-head": "Popular search for "
   }
 }
 </i18n>
