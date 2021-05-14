@@ -24,9 +24,8 @@ export default {
     // 初始化
     initialize() {
       // 将菜单栏目重新挂在body上
-      this.trigger = this.$slots.default[0].elm;
+      this.trigger = this.$slots['default'][0].elm;
       this.dropdown = this.$slots['zc-dropdown-menu'][0].elm
-      console.log(this.dropdown)
 
       if (this.mode === 'click')
         this.trigger.addEventListener('click',this.triggerClick);
@@ -71,8 +70,8 @@ export default {
   render() {
     return (
         <div class="zc-dropdown">
-          {this.$slots.default}
-          {this.$slots.dropdown}
+          {this.$slots['default']}
+          {this.$slots['zc-dropdown-menu']}
         </div>
     )
   }
