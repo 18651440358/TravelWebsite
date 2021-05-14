@@ -420,7 +420,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 @import "../../assets/style/theme/_handle.scss";
 // 着落页
 .zc-page-landing{

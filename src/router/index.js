@@ -7,12 +7,17 @@ import landing from '@/pages/landing/Landing.vue';
 Vue.use(VueRouter)
 
 const routes = [
-  {path: '/',redirect: '/landing'},
+  {path: '/',redirect: '/search'},
   {
     path: '/landing',
     name: '着落页',
     component: landing
   },
+  {
+    path: '/search',
+    name: '查找',
+    component: () => import(/* webpackChunkName: "about" */ '../pages/search/search.vue')
+  }
   // {
   //   path: '/about',
   //   name: 'About',
