@@ -12,6 +12,18 @@ export default {
     this.checkTheme();
 
     this.$i18n.locale = "en_US"
+
+    // 切换语言
+    this.$bus.on("switchLanguage",value=>{
+      if (value === 'zh-CN')
+        this.$i18n.locale = 'en_US'
+      else
+        this.$i18n.locale = 'zh-CN'
+    });
+
+    // 加载数据
+    this.downloadData();
+    console.log(111)
   },
   methods: {
     // 检测主题
@@ -21,6 +33,11 @@ export default {
           "theme",
           theme ? theme : "light"
       );
+    },
+
+    // 加载数据
+    downloadData (){
+
     }
   }
 }

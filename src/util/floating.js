@@ -57,17 +57,14 @@ export default {
             }
         },
         position($el, $target){
-            console.log($el,$target)
             if (!$el || !$target) return
 
             var triggerPos = $el.getBoundingClientRect()
             var dropdownPos = $target.getBoundingClientRect()
-
-            console.log(triggerPos,dropdownPos)
             var winW = window.innerWidth;
             var winH = window.innerHeight;
 
-            // x轴
+            // y轴
             if ((winH - triggerPos.top - triggerPos.height - 20) >= dropdownPos.height){
                 // 可以放在下方
                 this.dropdownTop = triggerPos.top + triggerPos.height
@@ -79,7 +76,9 @@ export default {
                 this.dropdownTop = winH - 20 - dropdownPos.height
             }
 
-            // y轴
+            console.log(winW,triggerPos.left,triggerPos.width,dropdownPos.width)
+
+            // x轴
             if ((winW - triggerPos.left - triggerPos.width - 20) >= dropdownPos.width){
                 this.dropdownLeft = triggerPos.left
             }else if (triggerPos.left - 20 >= dropdownPos.width){

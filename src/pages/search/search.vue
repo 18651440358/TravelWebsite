@@ -11,22 +11,12 @@
           <div class="filter-top">
           </div>
           <div class="filter-bottom">
-            <zc-dropdown>
-              <button>按钮1</button>
-              <zc-dropdown-menu slot="zc-dropdown-menu">
-                22
-              </zc-dropdown-menu>
-            </zc-dropdown>
+
           </div>
         </div>
       </zc-container>
     </header>
-    <zc-dropdown>
-      <button>按钮1</button>
-      <zc-dropdown-menu slot="zc-dropdown-menu">
-        11
-      </zc-dropdown-menu>
-    </zc-dropdown>
+
 
   </div>
 </template>
@@ -34,11 +24,9 @@
 <script>
 import ZcNav from "@/content/nav/nav";
 import ZcContainer from "@/component/container/container";
-import ZcDropdown from "@/component/dropdown/dropdown";
-import ZcDropdownMenu from "@/component/dropdown-menu/dropdown-menu";
 export default {
   name: "zc-search-landing",
-  components: {ZcDropdownMenu, ZcDropdown, ZcContainer, ZcNav}
+  components: {ZcContainer, ZcNav}
 }
 </script>
 

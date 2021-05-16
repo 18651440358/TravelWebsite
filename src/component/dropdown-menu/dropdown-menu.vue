@@ -27,23 +27,26 @@ export default {
     // 初始化
     initialize() {
       // 获取触发器位置
-      this.trigger = this.$parent.$children[0].$el
+      this.trigger = this.$parent.$el.children[0]
       this.dropdown = this.$el
       document.body.appendChild(this.$el)
 
       // 注册事件
       this.$on("visible", val => {
-        console.log(val)
         this.showMenu = val
         val && this.$emit("position",val);
       })
 
       this.$on("position", val => {
-        val && this.position(this.trigger, this.dropdown)
+        this.$nextTick(() => {
+          val && this.position(this.trigger, this.dropdown)
+        })
       })
       //实现滑动滚动条时，下拉框能跟随按钮一起滑动定位
       this.scrollHandle(this.trigger, () => {
-        this.showMenu && this.position(this.trigger, this.dropdown)
+        this.$nextTick(() => {
+          this.showMenu && this.position(this.trigger, this.dropdown)
+        })
       })
     },
   },
@@ -52,9 +55,14 @@ export default {
       return {
         position: 'absolute',
         zIndex: '100',
-        top: `{this.dropdownTop}px`,
-        left: `{this.dropdownLeft}px`
+        top: `${this.dropdownTop}px`,
+        left: `${this.dropdownLeft}px`
       }
+    }
+  },
+  destroyed() {
+    if(this.$el) {
+      document.body.removeChild(this.$el)
     }
   }
 }

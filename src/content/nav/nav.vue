@@ -11,7 +11,7 @@
 <!--        导航部分-->
           <ul class="menu-box">
           <li>
-            <router-link class="menu-item" to="/" :class="{'active': NavStyle[0]}">
+            <router-link class="menu-item" to="/landing" :class="{'active': NavStyle[0]}">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"/>
@@ -22,7 +22,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="menu-item" to="/" :class="{'active': NavStyle[1]}">
+            <router-link class="menu-item" to="/search" :class="{'active': NavStyle[1]}">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"/>
@@ -34,7 +34,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="menu-item" to="/" :class="{'active': NavStyle[2]}">
+            <router-link class="menu-item" to="/travelBlog" :class="{'active': NavStyle[2]}">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"/>
@@ -46,7 +46,7 @@
             </router-link>
           </li>
           <li>
-            <router-link class="menu-item" to="/" :class="{'active': NavStyle[3]}">
+            <router-link class="menu-item" to="/newsStories" :class="{'active': NavStyle[3]}">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"/>
@@ -59,7 +59,61 @@
           </li>
         </ul>
 <!--        头像-->
-          <zc-avatar></zc-avatar>
+          <zc-dropdown>
+            <zc-avatar></zc-avatar>
+            <zc-dropdown-menu slot="zc-dropdown-menu">
+              <div class="user-action">
+                <div class="action-panel">
+                  <router-link to="/" class="action-item">
+                    <div class="action-svg">
+                      <i class="fi-rr-eye"></i>
+                    </div>
+                    <span>{{$t('actions')[0]}}</span>
+                  </router-link>
+                  <router-link to="/" class="action-item">
+                    <div class="action-svg">
+                      <i class="fi-rr-browser"></i>
+                    </div>
+                    <span>{{$t('actions')[1]}}</span>
+                  </router-link>
+                  <router-link to="/" class="action-item">
+                    <div class="action-svg">
+                      <i class="fi-rr-document-signed"></i>
+                    </div>
+                    <span>{{$t('actions')[2]}}</span>
+                  </router-link>
+                  <div class="action-item" @click="switchLanguage">
+                    <div class="action-svg flags">
+                      <svg viewBox="0 0 800 800" v-if="$i18n.locale === 'zh-CN'">
+                        <path fill="#de2910" d="M0 0h800v800H0z"></path>
+                        <path d="M314 163L130 297l70-217 71 217L86 163h228zm56-109l70 29-74 18 50-58-7 76-39-65zm92 70l53 55-75-13 69-34-36 67-11-75zm17 116l26 72-63-43 76-3-60 47 21-73zm-65 83l-3 76-42-64 71 27-73 20 47-59z" fill="#ffde00"></path>
+                      </svg>
+                      <svg viewBox="0 0 200 200" v-if="$i18n.locale === 'en_US'">
+                        <path fill="#006" d="M0 0h200v200H0z"></path>
+                        <path d="M0 28v144l67-33v61h66v-61l67 33V28l-67 33V0H67v61z" fill="#fff"></path>
+                        <path d="M200 120h-80v80H80v-80H0V80h80V0h40v80h80v40zM0 165v-15l33-17h30L0 165zm200-26v15l-41-21h30l11 6zM41 67H11L0 61V46l41 21zm126 0h-30l63-32v15z" fill="#c00"></path>
+                      </svg>
+                    </div>
+                    <span>{{$t('actions')[3]}}</span>
+                  </div>
+                  <router-link to="/" class="action-item">
+                    <div class="action-svg">
+                      <i class="fi-rr-comment"></i>
+                    </div>
+                    <span>{{$t('actions')[4]}}</span>
+                  </router-link>
+                </div>
+                <zc-dropdown-item>
+                  <div class="action-item hover-none" @click="loginOut">
+                    <div class="action-svg">
+                      <i class="fi-rr-sign-out out"></i>
+                    </div>
+                    <span class="out">{{$t('actions')[5]}}</span>
+                  </div>
+                </zc-dropdown-item>
+              </div>
+            </zc-dropdown-menu>
+          </zc-dropdown>
         </div>
       </zc-row>
     </zc-container>
@@ -70,15 +124,18 @@
 import ZcContainer from "@/component/container/container";
 import ZcAvatar from "@/component/avatar/avatar";
 import ZcRow from "@/component/row/row";
+import ZcDropdown from "@/component/dropdown/dropdown";
+import ZcDropdownMenu from "@/component/dropdown-menu/dropdown-menu";
+import ZcDropdownItem from "@/component/dropdown-item/dropdown-item";
 export default {
   name: "zc-nav",
-  components: {ZcRow, ZcAvatar, ZcContainer},
+  components: {ZcDropdownItem, ZcDropdownMenu, ZcDropdown, ZcRow, ZcAvatar, ZcContainer},
   computed: {
     NavStyle(){
       const path = this.$route.path;
       return [
-          ["/landing"].includes(path),
           [""].includes(path),
+          ["/search"].includes(path),
           [""].includes(path),
           [""].includes(path)
       ]
@@ -86,6 +143,19 @@ export default {
   },
   mounted() {
 
+  },
+  methods: {
+    // 切换语言
+    switchLanguage() {
+      this.$bus.emit("switchLanguage",this.$i18n.locale);
+    },
+    handleCommand(command) {
+      console.log(command)
+    },
+    // 退出登录
+    loginOut() {
+      alert('退出登录')
+    }
   }
 }
 </script>
@@ -144,15 +214,63 @@ export default {
     @include fill(primary);
   }
 
+  // 用户操作
+  .user-action{
+    width: 230px;
+    border-radius: .7rem;
+    background-color: rgba(0,0,0,.3);
+    @include box-shadow(cardBoxShadow);
+    overflow: hidden;
+  }
+  .action-panel{
+    padding: 5px 0;
+    border-radius: .7rem;
+    @include bgColor(defaultBackground);
+    backdrop-filter: blur(10px);
+  }
+  .action-item{
+    padding: 10px 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .action-item .out{
+    color: #ffffff!important;
+  }
+  .action-panel .action-item:hover{
+    @include bgColor(lightBackground);
+  }
+  .action-svg{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 7px;
+    @include fontColor(primary);
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .action-svg.flags{
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
 </style>
 
 <i18n>
 {
   "zh-CN": {
-    "navigation": ["探索景点","开始旅程","景点打卡","新闻&故事"]
+    "navigation": ["探索景点","开始旅程","景点打卡","新闻&故事"],
+    "actions": ["查看个人资料", "我的近期活动", "我的订单概述", "语言偏好", "帮助与支持", "退出登录"]
   },
   "en_US": {
-    "navigation": ["Discover","Search", "Travel Blog", "News & Stories"]
+    "navigation": ["Discover","Search", "Travel Blog", "News & Stories"],
+    "actions": ["See your profile", "Your recent activity", "Booking overview", "Currency", "Help and support", "Log out"]
   }
 }
 </i18n>

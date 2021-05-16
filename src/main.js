@@ -8,12 +8,17 @@ Vue.config.productionTip = false
 import './assets/font/Poppins/font.css';
 import './assets/font/SourceHanSans/font.css';
 import './assets/font/Pattaya/font.css';
+import './assets/font/UIcons/font.scss';
 
 // i18n
 import i18n from './i18n'
 
 // vuex
 import store from './store'
+
+// 注册vue-bus
+import VueBus from 'vue-bus'
+Vue.use(VueBus)
 
 
 new Vue({

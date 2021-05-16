@@ -7,7 +7,7 @@ import landing from '@/pages/landing/Landing.vue';
 Vue.use(VueRouter)
 
 const routes = [
-  {path: '/',redirect: '/search'},
+  {path: '/',redirect: '/landing'},
   {
     path: '/landing',
     name: '着落页',
@@ -16,7 +16,17 @@ const routes = [
   {
     path: '/search',
     name: '查找',
-    component: () => import(/* webpackChunkName: "about" */ '../pages/search/search.vue')
+    component: () => import('../pages/search/search.vue')
+  },
+  {
+    path: '/travelBlog',
+    // name: '查找',
+    component: () => import('../pages/travelBlog/travelBlog.vue')
+  },
+  {
+    path: '/newsStories',
+    // name: '查找',
+    component: () => import('../pages/newsStories/newsStories.vue')
   }
   // {
   //   path: '/about',

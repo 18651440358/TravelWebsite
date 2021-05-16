@@ -13,9 +13,15 @@ export default new Vuex.Store({
     // 汇率
     exchangeRate: {
       USA: 0.1545
-    }
+    },
+    // 热门地区
+    destinations: require('@/data/destinations.js')
   },
   mutations: {
+
+  },
+  getters: {
+
   },
   actions: {
   },

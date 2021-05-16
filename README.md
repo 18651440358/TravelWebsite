@@ -16,6 +16,10 @@
 
 # New version
 
+### Update log on May 17, 2021
+> - Fixed the bug of Top Destinations data loading on the landing page, temporarily abandon the method of importing external files, and write directly in `data()`.
+> - The part of the drop-down menu has been added, and the drop-down menu can now be used in stand-alone mode.
+
 > ### Update log on May 10, 2021
 > The landing page of the website has been basically completed, everyone can comment together.
 > You can access via ```/landing```
