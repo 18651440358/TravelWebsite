@@ -76,8 +76,6 @@ export default {
                 this.dropdownTop = winH - 20 - dropdownPos.height
             }
 
-            console.log(winW,triggerPos.left,triggerPos.width,dropdownPos.width)
-
             // x轴
             if ((winW - triggerPos.left - triggerPos.width - 20) >= dropdownPos.width){
                 this.dropdownLeft = triggerPos.left

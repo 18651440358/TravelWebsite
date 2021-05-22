@@ -134,10 +134,10 @@ export default {
     NavStyle(){
       const path = this.$route.path;
       return [
-          [""].includes(path),
+          ["/landing"].includes(path),
           ["/search"].includes(path),
-          [""].includes(path),
-          [""].includes(path)
+          ["/travelBlog"].includes(path),
+          ["/newsStories"].includes(path)
       ]
     }
   },

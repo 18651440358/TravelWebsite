@@ -54,3 +54,10 @@
     filter: drop-shadow(value($color))!important;
   }
 }
+
+// 边框颜色
+@mixin border-color($color){
+  @include theme {
+    border-color: value($color)!important;
+  }
+}

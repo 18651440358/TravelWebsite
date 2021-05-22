@@ -9,6 +9,60 @@
       <zc-container>
         <div class="filter-container">
           <div class="filter-top">
+            <zc-col :grid="6" class="filter-item">
+              <div class="filter-title">
+                <i class="fi-rr-marker"></i>
+                <span>{{$t('filters')[0]}}</span>
+              </div>
+              <div class="filter-operate">
+                <zc-input-suggest :suggestions="suggestions"
+                                  v-model="testValue"
+                                  theme="transparent"
+                                  noFilling
+                                  bold
+                :placeholder="$i18n.locale === 'zh-CN'?'请输入地点':'Search for a place'">
+                  <template slot-scope="{item}">
+                    <div class="suggest-item">
+                      <div class="suggest-city">
+                        <i class="fi-br-marker"></i>
+                        <span>{{item.value}}</span>
+                      </div>
+                      <span class="suggest-country">{{item.country}}</span>
+                    </div>
+                  </template>
+                </zc-input-suggest>
+              </div>
+            </zc-col>
+            <zc-col :grid="5" class="filter-item">
+              <div class="filter-title">
+                <i class="fi-rr-calendar"></i>
+                <span>{{$t('filters')[1]}}</span>
+              </div>
+              <div class="filter-operate">
+                
+              </div>
+            </zc-col>
+            <zc-col :grid="5" class="filter-item">
+              <div class="filter-title">
+                <i class="fi-rr-calendar"></i>
+                <span>{{$t('filters')[2]}}</span>
+              </div>
+              <div class="filter-operate">
+
+              </div>
+            </zc-col>
+            <zc-col :grid="4" class="filter-item">
+              <div class="filter-title">
+                <i class="fi-rr-users"></i>
+                <span>{{$t('filters')[3]}}</span>
+              </div>
+              <div class="filter-operate">
+
+              </div>
+            </zc-col>
+            <zc-col :grid="4" class="filter-item" style="align-items: flex-end">
+              <div class="filter-search">{{$t('filters')[4]}}</div>
+            </zc-col>
           </div>
           <div class="filter-bottom">
 
@@ -24,9 +78,38 @@
 <script>
 import ZcNav from "@/content/nav/nav";
 import ZcContainer from "@/component/container/container";
+import ZcCol from "@/component/col/col";
+import ZcInputSuggest from "@/component/input-suggest/input-suggest";
 export default {
   name: "zc-search-landing",
-  components: {ZcContainer, ZcNav}
+  components: {ZcInputSuggest, ZcCol, ZcContainer, ZcNav},
+  data() {
+    return {
+      testValue: '',
+      suggestions: []
+    }
+  },
+  created() {
+    // 初始化
+    this.init();
+  },
+  methods: {
+    // 初始化
+    init() {
+      // 记载数据
+      var mainCity = require('@/data/mainCity.js');
+      var country = require('@/data/country.js');
+      var suggestions = [];
+      mainCity.forEach((item)=>{
+        var obj = {
+          value: this.$i18n.locale === 'zh-CN' ? item.name : item.nameEn,
+          country: this.$i18n.locale === 'zh-CN' ? country.filter((c) => {return item.countryCode === c.code})[0].name : country.filter((c) => {return item.countryCode === c.code})[0].nameEn
+        }
+        suggestions.push(obj)
+      })
+      this.suggestions = suggestions
+    }
+  }
 }
 </script>
 
@@ -55,6 +138,92 @@ export default {
 }
 // 上部
 .filter-top{
+  display: flex;
+  align-items: stretch;
+}
+.filter-item{
+  padding: 0 15px;
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  margin-right: 10px;
+}
+.filter-item:last-child{
+  margin: 0;
+}
+.filter-item:nth-child(1)::after,.filter-item:nth-child(2)::after,.filter-item:nth-child(3)::after{
+  content: '';
+  width: 1px;
+  height: 90%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate3d(0,-50%,0);
+  @include bgColor(lightBackground);
+}
 
+// 过滤器标题
+.filter-title{
+  display: flex;
+  align-items: center;
+}
+.filter-title i{
+  @include fontColor(primary);
+  font-size: 16px;
+}
+.filter-title span{
+  display: inline-block;
+  @include fontColor(regularText);
+  font-weight: 500;
+  margin-left: 10px;
+  font-size: 13px;
+  line-height: 13px;
+  height: 13px;
+}
+// 搜索按钮
+.filter-search{
+  color: #fff;
+  @include bgColor(primary);
+  width: 90%;
+  height: 100%;
+  border-radius: 50px;
+  box-shadow: 0 10px 10px rgba(#0080FF, 0.3);
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+// 自定义
+.suggest-item{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.suggest-city{
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  @include fontColor(primaryText);
+  font-weight: 800;
+}
+.suggest-city i{
+  margin-right: 5px;
+}
+.suggest-country{
+  @include fontColor(grayText);
+  font-size: 13px;
 }
 </style>
+
+<i18n>
+{
+  "zh-CN": {
+    "filters": ["目的地","入住日期","退房日期","游客数","搜 索"]
+  },
+  "en_US": {
+    "filters": ["Location","Check in","Check out","Guests","Search"]
+  }
+}
+</i18n>

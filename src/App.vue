@@ -23,7 +23,6 @@ export default {
 
     // 加载数据
     this.downloadData();
-    console.log(111)
   },
   methods: {
     // 检测主题

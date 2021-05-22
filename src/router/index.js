@@ -7,7 +7,7 @@ import landing from '@/pages/landing/Landing.vue';
 Vue.use(VueRouter)
 
 const routes = [
-  {path: '/',redirect: '/landing'},
+  {path: '/',redirect: '/search'},
   {
     path: '/landing',
     name: '着落页',
