@@ -69,6 +69,14 @@ export default {
         })
       })
 
+      var _this = this
+      window.addEventListener("resize", () => {
+        _this.showPopper && _this.position(_this.trigger, _this.dropdown)
+      })
+      window.addEventListener("scroll", () => {
+        _this.showPopper && _this.position(_this.trigger, _this.dropdown)
+      })
+
     },
     doDestroy() {
       if(this.$el) {
@@ -81,7 +89,7 @@ export default {
     style() {
       return {
         width: `${this.dropdownWidth}px`,
-        position: 'absolute',
+        position: 'fixed',
         zIndex: '100',
         top: `${this.dropdownTop}px`,
         left: `${this.dropdownLeft}px`

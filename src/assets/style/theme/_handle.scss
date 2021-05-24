@@ -61,3 +61,23 @@
     border-color: value($color)!important;
   }
 }
+@mixin border-top-color($color){
+  @include theme {
+    border-top-color: value($color)!important;
+  }
+}
+@mixin border-bottom-color($color){
+  @include theme {
+    border-bottom-color: value($color)!important;
+  }
+}
+@mixin border-left-color($color){
+  @include theme {
+    border-left-color: value($color)!important;
+  }
+}
+@mixin border-right-color($color){
+  @include theme {
+    border-right-color: value($color)!important;
+  }
+}

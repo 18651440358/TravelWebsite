@@ -6,6 +6,7 @@
               @focus="focusHandle"
               @blur="blurHandle"
               @change="$emit('change', $event)"
+              :read-only="false"
     ></zc-input>
 <!--    弹出框-->
     <zc-suggest-item ref="suggest">
@@ -33,6 +34,13 @@ export default {
     event: 'input'
   },
   props: {
+    readOnly: {
+      type: Boolean,
+      default: true,
+      validator: function (val){
+        return [true].includes(val)
+      }
+    },
     value: String,
     loading: {
       type: Boolean,

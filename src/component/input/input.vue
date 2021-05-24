@@ -8,6 +8,7 @@
            @blur="$emit('blur', $event.target.value)"
            @change="$emit('change', $event.target.value)"
            :placeholder="placeholder"
+           :readonly="readOnly"
            :class="[
                'zc-input',
                {
@@ -27,6 +28,7 @@
               @blur="$emit('blur', $event.target.value)"
               @change="$emit('change', $event.target.value)"
               :placeholder="placeholder"
+              :readonly="readOnly"
               :class="[
                'zc-input',
                {
@@ -47,12 +49,19 @@ export default {
     prop: 'value',
     event: 'input'
   },
+  mounted() {
+
+  },
   data() {
     return {
 
     }
   },
   props: {
+    readOnly: {
+      type: Boolean,
+      default: false
+    },
     value: String,
     type: {
       type: String,

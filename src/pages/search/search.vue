@@ -11,7 +11,7 @@
           <div class="filter-top">
             <zc-col :grid="6" class="filter-item">
               <div class="filter-title">
-                <i class="fi-rr-marker"></i>
+                <i class="fi-br-marker"></i>
                 <span>{{$t('filters')[0]}}</span>
               </div>
               <div class="filter-operate">
@@ -24,7 +24,7 @@
                   <template slot-scope="{item}">
                     <div class="suggest-item">
                       <div class="suggest-city">
-                        <i class="fi-br-marker"></i>
+                        <i class="fi-br-calendar"></i>
                         <span>{{item.value}}</span>
                       </div>
                       <span class="suggest-country">{{item.country}}</span>
@@ -35,25 +35,31 @@
             </zc-col>
             <zc-col :grid="5" class="filter-item">
               <div class="filter-title">
-                <i class="fi-rr-calendar"></i>
+                <i class="fi-br-calendar"></i>
                 <span>{{$t('filters')[1]}}</span>
               </div>
               <div class="filter-operate">
-                
+                <zc-date-picker bold
+                                theme="transparent"
+                                noFilling
+                                v-model="startDate"
+                                show-clear
+                                show-today
+                ></zc-date-picker>
               </div>
             </zc-col>
             <zc-col :grid="5" class="filter-item">
               <div class="filter-title">
-                <i class="fi-rr-calendar"></i>
+                <i class="fi-br-calendar"></i>
                 <span>{{$t('filters')[2]}}</span>
               </div>
               <div class="filter-operate">
-
+{{startDate}}
               </div>
             </zc-col>
             <zc-col :grid="4" class="filter-item">
               <div class="filter-title">
-                <i class="fi-rr-users"></i>
+                <i class="fi-br-users"></i>
                 <span>{{$t('filters')[3]}}</span>
               </div>
               <div class="filter-operate">
@@ -70,7 +76,7 @@
         </div>
       </zc-container>
     </header>
-
+  <div style="height: 3000px;background:#000;"></div>
 
   </div>
 </template>
@@ -80,13 +86,15 @@ import ZcNav from "@/content/nav/nav";
 import ZcContainer from "@/component/container/container";
 import ZcCol from "@/component/col/col";
 import ZcInputSuggest from "@/component/input-suggest/input-suggest";
+import ZcDatePicker from "@/component/date-picker/date-picker";
 export default {
   name: "zc-search-landing",
-  components: {ZcInputSuggest, ZcCol, ZcContainer, ZcNav},
+  components: {ZcDatePicker, ZcInputSuggest, ZcCol, ZcContainer, ZcNav},
   data() {
     return {
       testValue: '',
-      suggestions: []
+      suggestions: [],
+      startDate: ''
     }
   },
   created() {

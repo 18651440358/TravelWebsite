@@ -42,18 +42,20 @@ export default {
           val && this.position(this.trigger, this.dropdown)
         })
       })
-      //实现滑动滚动条时，下拉框能跟随按钮一起滑动定位
-      this.scrollHandle(this.trigger, () => {
-        this.$nextTick(() => {
-          this.showMenu && this.position(this.trigger, this.dropdown)
-        })
+
+      var _this = this
+      window.addEventListener("resize", () => {
+        _this.showMenu && _this.position(_this.trigger, _this.dropdown)
+      })
+      window.addEventListener("scroll", () => {
+        _this.showMenu && _this.position(_this.trigger, _this.dropdown)
       })
     },
   },
   computed: {
     style() {
       return {
-        position: 'absolute',
+        position: 'fixed',
         zIndex: '100',
         top: `${this.dropdownTop}px`,
         left: `${this.dropdownLeft}px`

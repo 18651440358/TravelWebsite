@@ -42,27 +42,13 @@ export default {
                 this.dispatch(target.$parent, componentName, eventName, params)
             }
         },
-        /**
-         * @description 递归为目标元素的父元素绑定滚动事件，并执行callback
-         * @param {Element} $el 目标元素
-         * @param {Function} callback 回调函数
-         * @return {Void}
-         */
-        scrollHandle($el, callback = () => {}) {
-            let target
-            // eslint-disable-next-line no-cond-assign
-            if (target = $el.parentElement) {
-                target.addEventListener("scroll", callback)
-                this.scrollHandle(target, callback)
-            }
-        },
         position($el, $target){
             if (!$el || !$target) return
 
             var triggerPos = $el.getBoundingClientRect()
             var dropdownPos = $target.getBoundingClientRect()
-            var winW = window.innerWidth;
-            var winH = window.innerHeight;
+            var winW = document.documentElement.clientWidth;
+            var winH = document.documentElement.clientHeight;
 
             // y轴
             if ((winH - triggerPos.top - triggerPos.height - 20) >= dropdownPos.height){
