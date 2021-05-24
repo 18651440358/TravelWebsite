@@ -9,7 +9,7 @@
         @blur="$emit('blur', $event)"
         @change="$emit('change', $event)"
         read-only
-        :placeholder="'yyyy'+dividing+'dd'+dividing+'dd'"
+        :placeholder="zcPlaceholder"
         @click.native="show"
     ></zc-input>
 <!--    弹出框-->
@@ -165,6 +165,7 @@ export default {
       type: String,
       default: '-'
     },
+    placeholder: String,
     showToday: {
       type: Boolean,
       default: false
@@ -205,7 +206,10 @@ export default {
   watch: {
     selected: function (val){
       if(val.length === 3)
-        this.$emit('input', val[0] + this.dividing + (val[1] + 1) + this.dividing + val[2])
+        if(this.$i18n.locale === 'zh-CN')
+          this.$emit('input', val[0] + this.dividing + (val[1] + 1) + this.dividing + val[2])
+        else
+          this.$emit('input', val[2] + this.dividing + (val[1] + 1) + this.dividing + val[0])
       else
         this.$emit('input','')
     },
@@ -226,6 +230,15 @@ export default {
         top: `${this.dropdownTop}px`,
         left: `${this.dropdownLeft}px`
       }
+    },
+    zcPlaceholder() {
+      if(!this.placeholder)
+        if(this.$i18n.locale === 'zh-CN')
+          return `yyyy${this.dividing}mm${this.dividing}dd`;
+        else
+          return `dd${this.dividing}mm${this.dividing}yyyy`;
+      else
+        return this.placeholder
     },
     pickerYear() {
       var over = this.yearView % 10;

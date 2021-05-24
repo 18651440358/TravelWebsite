@@ -16,7 +16,7 @@
               </div>
               <div class="filter-operate">
                 <zc-input-suggest :suggestions="suggestions"
-                                  v-model="testValue"
+                                  v-model="location"
                                   theme="transparent"
                                   noFilling
                                   bold
@@ -45,6 +45,7 @@
                                 v-model="startDate"
                                 show-clear
                                 show-today
+                                :placeholder="$t('start-date')"
                 ></zc-date-picker>
               </div>
             </zc-col>
@@ -54,7 +55,14 @@
                 <span>{{$t('filters')[2]}}</span>
               </div>
               <div class="filter-operate">
-{{startDate}}
+                <zc-date-picker bold
+                                theme="transparent"
+                                noFilling
+                                v-model="endDate"
+                                show-clear
+                                show-today
+                                :placeholder="$t('end-date')"
+                ></zc-date-picker>
               </div>
             </zc-col>
             <zc-col :grid="4" class="filter-item">
@@ -63,7 +71,11 @@
                 <span>{{$t('filters')[3]}}</span>
               </div>
               <div class="filter-operate">
-
+                <zc-input bold
+                          theme="transparent"
+                          noFilling
+                          v-model="touristInfo"
+                ></zc-input>
               </div>
             </zc-col>
             <zc-col :grid="4" class="filter-item" style="align-items: flex-end">
@@ -71,7 +83,21 @@
             </zc-col>
           </div>
           <div class="filter-bottom">
-
+            <zc-col :grid="5">
+            1111
+            </zc-col>
+            <zc-col :grid="5">
+              222
+            </zc-col>
+            <zc-col :grid="4">
+              333
+            </zc-col>
+            <zc-col :grid="5">
+              444
+            </zc-col>
+            <zc-col :grid="5">
+              555
+            </zc-col>
           </div>
         </div>
       </zc-container>
@@ -87,14 +113,17 @@ import ZcContainer from "@/component/container/container";
 import ZcCol from "@/component/col/col";
 import ZcInputSuggest from "@/component/input-suggest/input-suggest";
 import ZcDatePicker from "@/component/date-picker/date-picker";
+import ZcInput from "@/component/input/input";
 export default {
   name: "zc-search-landing",
-  components: {ZcDatePicker, ZcInputSuggest, ZcCol, ZcContainer, ZcNav},
+  components: {ZcInput, ZcDatePicker, ZcInputSuggest, ZcCol, ZcContainer, ZcNav},
   data() {
     return {
-      testValue: '',
+      location: '',
       suggestions: [],
-      startDate: ''
+      startDate: '',
+      endDate: '',
+      touristInfo: '2 Adults,1 Room'
     }
   },
   created() {
@@ -145,7 +174,7 @@ export default {
   align-items: stretch;
 }
 // 上部
-.filter-top{
+.filter-top,.filter-bottom{
   display: flex;
   align-items: stretch;
 }
@@ -162,7 +191,7 @@ export default {
 .filter-item:nth-child(1)::after,.filter-item:nth-child(2)::after,.filter-item:nth-child(3)::after{
   content: '';
   width: 1px;
-  height: 90%;
+  height: 80%;
   position: absolute;
   right: 0;
   top: 50%;
@@ -223,15 +252,24 @@ export default {
   @include fontColor(grayText);
   font-size: 13px;
 }
+
+// 下部
+.filter-bottom{
+  margin-top: 20px;
+}
 </style>
 
 <i18n>
 {
   "zh-CN": {
-    "filters": ["目的地","入住日期","退房日期","游客数","搜 索"]
+    "filters": ["目的地","入住日期","退房日期","游客数","搜 索"],
+    "start-date": "入住日期",
+    "end-date": "离开日期"
   },
   "en_US": {
-    "filters": ["Location","Check in","Check out","Guests","Search"]
+    "filters": ["Location","Check in","Check out","Guests","Search"],
+    "start-date": "Start date",
+    "end-date": "End date"
   }
 }
 </i18n>

@@ -16,6 +16,10 @@
 
 # New version
 
+> ### Update log on May 24, 2021
+Added a `zc-date-picker` that can be used to quickly select a date.
+
+
 > ### Update log on May 23, 2021
 > - Updated the personalized input component, `zc-input`
 > - Updated to get input prompts during the input process, `zc-input-suggest`
