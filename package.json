@@ -9,10 +9,12 @@
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "dependencies": {
+    "apexcharts": "^3.26.3",
     "core-js": "^3.6.5",
     "fusioncharts": "^3.17.0",
     "swiper": "^6.5.8",
     "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.1",
     "vue-awesome-swiper": "^4.1.1",
     "vue-bus": "^1.2.1",
     "vue-fusioncharts": "^3.0.4",

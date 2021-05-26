@@ -83,20 +83,43 @@
             </zc-col>
           </div>
           <div class="filter-bottom">
-            <zc-col :grid="5">
-            1111
+            <zc-col :grid="5" class="bottom-item">
+              <span class="bottom-title">{{$t('filter-bottom')[0]}}</span>
+              <zc-slider
+                  v-model="priceRange"
+                  :min="80"
+                  :max="300"
+                  interval
+                  :data="priceRangeList"
+                  :name="this.$i18n.locale === 'zh-CN' ? '价格区间' : 'Price range'"
+                 ></zc-slider>
+<!--              价格区间-->
+              <h5 class="range-title">
+                <span>
+                  <template v-if="this.$i18n.locale === 'zh-CN'">¥</template>
+                  <template v-else>$</template>
+                  {{priceRange[0]}}
+                </span>
+                <span> - </span>
+                <span>
+                  <template v-if="this.$i18n.locale === 'zh-CN'">¥</template>
+                  <template v-else>$</template>
+                  {{priceRange[1]}}
+                </span>
+              </h5>
             </zc-col>
-            <zc-col :grid="5">
-              222
+            <zc-col :grid="5" class="bottom-item">
+              <span class="bottom-title">{{$t('filter-bottom')[1]}}</span>
+
             </zc-col>
-            <zc-col :grid="4">
-              333
+            <zc-col :grid="4" class="bottom-item">
+              <span class="bottom-title">{{$t('filter-bottom')[2]}}</span>
             </zc-col>
-            <zc-col :grid="5">
-              444
+            <zc-col :grid="5" class="bottom-item">
+              <span class="bottom-title">{{$t('filter-bottom')[3]}}</span>
             </zc-col>
-            <zc-col :grid="5">
-              555
+            <zc-col :grid="5" class="bottom-item">
+              <span class="bottom-title">{{$t('filter-bottom')[4]}}</span>
             </zc-col>
           </div>
         </div>
@@ -114,23 +137,39 @@ import ZcCol from "@/component/col/col";
 import ZcInputSuggest from "@/component/input-suggest/input-suggest";
 import ZcDatePicker from "@/component/date-picker/date-picker";
 import ZcInput from "@/component/input/input";
+import ZcSlider from "@/component/slider/slider";
 export default {
   name: "zc-search-landing",
-  components: {ZcInput, ZcDatePicker, ZcInputSuggest, ZcCol, ZcContainer, ZcNav},
+  components: {ZcSlider, ZcInput, ZcDatePicker, ZcInputSuggest, ZcCol, ZcContainer, ZcNav},
+
   data() {
     return {
       location: '',
       suggestions: [],
       startDate: '',
       endDate: '',
-      touristInfo: '2 Adults,1 Room'
+      touristInfo: '2 Adults,1 Room',
+      priceRange: [100,230],
+      priceRangeList: []
     }
   },
   created() {
     // 初始化
     this.init();
+    // 初始化图表
+    this.initChart();
   },
   methods: {
+    // 初始化图表
+    initChart() {
+      var priceRangeList = []
+      priceRangeList.push({x: 80,y: 0})
+      for(var i = 90; i <= 290; i += 20) {
+        priceRangeList.push({x: i, y: Math.floor(Math.random() * 80 + 20)})
+      }
+      priceRangeList.push({x: 300,y: 0})
+      this.priceRangeList = priceRangeList
+    },
     // 初始化
     init() {
       // 记载数据
@@ -172,6 +211,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  user-select: none;
 }
 // 上部
 .filter-top,.filter-bottom{
@@ -224,7 +264,7 @@ export default {
   width: 90%;
   height: 100%;
   border-radius: 50px;
-  box-shadow: 0 10px 10px rgba(#0080FF, 0.3);
+  @include box-shadow(buttonShadow);
   font-size: 14px;
   font-weight: 500;
   display: flex;
@@ -257,17 +297,41 @@ export default {
 .filter-bottom{
   margin-top: 20px;
 }
+.filter-bottom .bottom-title{
+  font-size: 12px;
+  @include fontColor(regularText);
+  font-weight: 500;
+  user-select: none;
+}
+.bottom-item{
+  padding: 0 15px;
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  margin-right: 10px;
+}
+.bottom-item:last-child{
+  margin: 0;
+}
+// 价格区间
+.range-title{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 </style>
 
 <i18n>
 {
   "zh-CN": {
     "filters": ["目的地","入住日期","退房日期","游客数","搜 索"],
+    "filter-bottom": ["价格范围","类型","客人评价","位置","更多过滤器"],
     "start-date": "入住日期",
     "end-date": "离开日期"
   },
   "en_US": {
     "filters": ["Location","Check in","Check out","Guests","Search"],
+    "filter-bottom": ["Price range","Type","Guest rating","Location","More filters"],
     "start-date": "Start date",
     "end-date": "End date"
   }

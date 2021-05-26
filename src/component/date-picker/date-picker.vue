@@ -127,7 +127,7 @@
           <div class="picker-body">
             <div class="picker-row" v-for="(year,index) in 12" :key="'years'+index">
               <template v-for="(item,yearIndex) in pickerYear">
-                <div @click.stop="showThisYear(item)" :class="{'thisMonth':parseInt(yearIndex) === selected[0]}" :key="'monthIndex'+yearIndex" class="picker-cell zc-month" v-if="index * 4 <= yearIndex && (index+1) * 4 > yearIndex">
+                <div @click.stop="showThisYear(item)" :class="{'thisYear':parseInt(item) === selected[0]}" :key="'monthIndex'+yearIndex" class="picker-cell zc-year" v-if="index * 4 <= yearIndex && (index+1) * 4 > yearIndex">
                   {{item}}
                 </div>
               </template>
@@ -209,7 +209,7 @@ export default {
         if(this.$i18n.locale === 'zh-CN')
           this.$emit('input', val[0] + this.dividing + (val[1] + 1) + this.dividing + val[2])
         else
-          this.$emit('input', val[2] + this.dividing + (val[1] + 1) + this.dividing + val[0])
+          this.$emit('input', val[1] + this.dividing + (val[2] + 1) + this.dividing + val[0])
       else
         this.$emit('input','')
     },
@@ -236,7 +236,7 @@ export default {
         if(this.$i18n.locale === 'zh-CN')
           return `yyyy${this.dividing}mm${this.dividing}dd`;
         else
-          return `dd${this.dividing}mm${this.dividing}yyyy`;
+          return `mm${this.dividing}dd${this.dividing}yyyy`;
       else
         return this.placeholder
     },
@@ -464,21 +464,22 @@ export default {
   }
   .datepicker-switch.final:hover{
     @include bgColor(dangerBackground);
+    cursor: no-drop;
   }
   .zc-date{
     cursor: pointer;
     @include fontColor(primaryText);
   }
-  .zc-month{
+  .zc-month,.zc-year{
     width: 23%;
     height: 54px!important;
     cursor: pointer;
     @include fontColor(primaryText);
   }
-  .zc-month:hover{
+  .zc-month:hover,.zc-year:hover{
     @include bgColor(lightBackground);
   }
-  .zc-month.thisMonth{
+  .zc-month.thisMonth,.zc-year.thisYear{
     @include bgColor(primaryBackground);
     @include fontColor(primary);
   }
@@ -520,6 +521,7 @@ export default {
   .picker-body{
     width: 100%;
     display: table;
+    margin-top: 10px;
   }
   .picker-week{
     display: table-header-group;
