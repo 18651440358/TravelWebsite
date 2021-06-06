@@ -1,18 +1,18 @@
 <template>
 <!--  滑块-->
-  <div class="zc-slider" ref="slider">
+  <div class="zc-slider">
 <!--    图表-->
     <apexchart
         style="margin-bottom: -10px"
-      width="100%"
-      height="40"
-      type="area"
-      :options="options"
-      :series="series"
+        width="100%"
+        height="40"
+        type="area"
+        :options="options"
+        :series="series"
         v-if="options"
     ></apexchart>
 <!--    滑块主体-->
-    <div class="zc-slideway">
+    <div class="zc-slide-way" ref="slider">
 <!--      开始按钮-->
       <div class="button" v-if="interval" @mousedown="startMousedown" :style="startStyle"></div>
 <!--      当前满足条-->
@@ -92,7 +92,8 @@ export default {
     startStyle() {
       return {
         position: 'absolute',
-        left: `${this.startX - 8}px`,
+        // left: `${this.startX - 8}px`,
+        transform: `translate3d(${this.startX - 8}px,0,0)`,
         top: '-7px',
         zIndex: `${this.startZ}`
       }
@@ -247,12 +248,12 @@ export default {
     padding: 0 8px;
   }
   // 滑块
-  .zc-slideway{
+  .zc-slide-way{
     width: 100%;
     height: 3px;
     position: relative;
     border-radius: 3px;
-    @include bgColor(lightBackground);
+    @include bgColor(LightText);
     margin: 10px 0;
   }
   // 按钮

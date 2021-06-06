@@ -209,7 +209,7 @@ export default {
         if(this.$i18n.locale === 'zh-CN')
           this.$emit('input', val[0] + this.dividing + (val[1] + 1) + this.dividing + val[2])
         else
-          this.$emit('input', val[1] + this.dividing + (val[2] + 1) + this.dividing + val[0])
+          this.$emit('input', (val[1] + 1) + this.dividing + val[2] + this.dividing + val[0])
       else
         this.$emit('input','')
     },

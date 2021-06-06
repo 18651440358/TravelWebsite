@@ -36,7 +36,8 @@ export default {
       const value = {};
       // 查看是否需要间隔
       if(this.spacing){
-        value.marginleft = value.marginRight = `-${this.spacing / 2}px`;
+        value.marginLeft = `-${this.spacing / 2}px`;
+        value.marginRight = `-${this.spacing / 2}px`;
       }
       return value || {};
     }

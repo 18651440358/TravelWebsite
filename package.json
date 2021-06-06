@@ -12,6 +12,7 @@
     "apexcharts": "^3.26.3",
     "core-js": "^3.6.5",
     "fusioncharts": "^3.17.0",
+    "mapbox-gl": "^2.3.0",
     "swiper": "^6.5.8",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.1",
